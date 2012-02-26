@@ -33,7 +33,7 @@ class Config
 	 * It includes the config file with the config values, and save them in the calculated_values property, taking care of inheritance.
 	 *
 	 * @param string $environment The environment where you are in.
-	 * @param object $file A file handler to work with the filesystem.
+	 * @param File $file A file handler to work with the filesystem.
 	 */
 	public function __construct( $environment, $file )
 	{
@@ -41,7 +41,7 @@ class Config
 		{
 			throw new PHPConfigException( 'A file handler is needed.' );
 		}
-		
+
 		$this->environment			= $environment ;
 		$this->config_values		= $file->requireFile();
 		$this->calculated_values	= $this->getConfigFromEnvironment( $environment );
@@ -74,7 +74,7 @@ class Config
 
 	/**
 	 * It returns the requested config key.
-	 * @param string $config_value Which config key you want to know the value
+	 * @param string $config_key Which config key you want to know the value
 	 * @return mixed The config value
 	 */
 	public function get( $config_key )
