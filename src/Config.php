@@ -45,6 +45,7 @@ class Config
 		$this->environment			= $environment ;
 		$this->config_values		= $file->requireFile();
 		$this->calculated_values	= $this->getConfigFromEnvironment( $environment );
+		$this->config_values		= null;
 	}
 
 	/**
