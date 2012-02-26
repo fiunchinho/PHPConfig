@@ -21,3 +21,7 @@ $config->get( 'username' );
 $config->get( 'password' );
 $config->get( 'db_host' );
 ```
+
+Config values inheritance
+---------------------------
+You can get inheritance accross different environments. You can set a parent environment from which the current environment where you are, will inherit its values. Local definition can overwrite values, so you will get all the values defined in the parent environment, plus the values defined in the current environment. The inheritance accepts several levels.
