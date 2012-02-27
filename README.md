@@ -15,13 +15,14 @@ The config class needs an instance of a file handler to include the file contain
 
 use PHPConfig\Config;
 
-$fileHandler	= new File();
+$fileHandler	= new File( 'my_config.php' );
 $config			= new Config( 'development', $file );
 $config->get( 'username' );
 $config->get( 'password' );
-$config->get( 'db_host' );
+$config->get( 'db_host', 'default_host' );
 ```
 
 Config values inheritance
 ---------------------------
-You can get inheritance accross different environments. You can set a parent environment from which the current environment where you are, will inherit its values. Local definition can overwrite values, so you will get all the values defined in the parent environment, plus the values defined in the current environment. The inheritance accepts several levels.
+You can get inheritance accross different environments. If you equalize to environments, the second one will inherit from the first one. Afterwards you may set new values for that environment, or even overwrite the existing ones. The inheritance accepts several levels.
+There is a example config file.

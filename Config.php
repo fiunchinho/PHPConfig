@@ -14,18 +14,12 @@ class Config
 	protected	$config_values		= array();
 
 	/**
-	 *
-	 * @var array Contains the final values, taking inheritance in account.
-	 */
-	protected	$calculated_values	= array();
-
-	/**
 	 * @var string Environment where we are.
 	 */
 	public		$environment;
 
 	/**
-	 * It includes the config file with the config values, and save them in the calculated_values property, taking care of inheritance.
+	 * It includes the config file with the config values, and save them in the config_values property.
 	 *
 	 * @param string $environment The environment where you are in.
 	 * @param File $file A file handler to work with the filesystem.
@@ -63,11 +57,3 @@ class Config
 }
 
 class PHPConfigException extends \InvalidArgumentException {}
-//
-//$file = new File( 'example.config.php' );
-//$config = new Config( 'dev', $file );
-//var_dump( $config->get( 'cache_path', 'paco' ) );
-//var_dump( $config->get( 'base_url', 'paco' ) );
-//var_dump( $config->get( 'only_dev', 'paco' ) );
-//var_dump( $config->get( 'db', 'paco' ) );
-//var_dump( $config->get( 'non-existing', 'paco' ) );
