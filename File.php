@@ -12,7 +12,7 @@ class File
 	}
 	public function requireFile()
 	{
-		if ( !\file_exists( $this->filename ) || !\is_readable( $this->filename ) )
+		if ( !$this->isReadable() )
 			throw new FileNotFoundException( "The file " . $this->filename . " was not found or it's not readable." );
 		else
 			return require $this->filename;
@@ -21,6 +21,10 @@ class File
 	{
 		return $this->filename;
 	}
+	public function isReadable()
+	{
+		return \is_readable( $this->filename ) ;
+	}
 }
 
-class FileNotFoundException extends \Exception{}
+class FileNotFoundException extends \InvalidArgumentException{}

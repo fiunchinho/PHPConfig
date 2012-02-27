@@ -9,11 +9,6 @@ require __DIR__ . '/File.php';
 class Config
 {
 	/**
-	 * Name of the key containing the config environment where a certain environment inherits from.
-	 */
-	const		INHERITS_FROM		= '_parent';
-
-	/**
 	 * @var array Contains the raw config values.
 	 */
 	protected	$config_values		= array();
@@ -43,48 +38,36 @@ class Config
 		}
 
 		$this->environment			= $environment ;
-		$this->config_values		= $file->requireFile();
-		$this->calculated_values	= $this->getConfigFromEnvironment( $environment );
-		$this->config_values		= null;
-	}
-
-	/**
-	 * It calculates the config values. Environments can inherit from other environments.
-	 *
-	 * @param string $environment The environment where you are in.
-	 * @return array The calculated values for the given environment
-	 */
-	private function getConfigFromEnvironment( $environment )
-	{
-		if ( !\array_key_exists( $environment, $this->config_values ) )
+		$included_values			= $file->requireFile();
+		if ( !\array_key_exists( $environment, $included_values ) )
 		{
 			throw new PHPConfigException( 'Missing environment: problem trying to get config values for \'' . $environment . '\' environment' );
 		}
-
-		$environment_values			= $this->config_values[$environment];
-		// If this environment does not inherit from another, return its config values.
-		if ( !\array_key_exists( self::INHERITS_FROM, $environment_values ) )
-		{
-			return $environment_values ;
-		}
-
-		$parent_environment_values	= $this->config_values[$environment][self::INHERITS_FROM];
-		return \array_merge( $this->getConfigFromEnvironment( $parent_environment_values ), $environment_values );
+		$this->config_values		= $included_values[$environment];
 	}
 
 	/**
 	 * It returns the requested config key.
 	 * @param string $config_key Which config key you want to know the value
+	 * @param mixed $default_value In case that the key is not present, this value will be returned
 	 * @return mixed The config value
 	 */
-	public function get( $config_key )
+	public function get( $config_key, $default_value = null )
 	{
-		if ( isset( $this->calculated_values[$config_key] ) )
+		if ( \array_key_exists( $config_key, $this->config_values ) )
 		{
-			return $this->calculated_values[$config_key];
+			return $this->config_values[$config_key];
 		}
-		return null;
+		return $default_value;
 	}
 }
 
-class PHPConfigException extends \Exception {}
+class PHPConfigException extends \InvalidArgumentException {}
+//
+//$file = new File( 'example.config.php' );
+//$config = new Config( 'dev', $file );
+//var_dump( $config->get( 'cache_path', 'paco' ) );
+//var_dump( $config->get( 'base_url', 'paco' ) );
+//var_dump( $config->get( 'only_dev', 'paco' ) );
+//var_dump( $config->get( 'db', 'paco' ) );
+//var_dump( $config->get( 'non-existing', 'paco' ) );
