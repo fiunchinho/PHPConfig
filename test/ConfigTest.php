@@ -1,7 +1,7 @@
 <?php
 namespace PHPConfig;
 
-require __DIR__ . '/../src/Config.php';
+require __DIR__ . '/../Config.php';
 
 
 /**
