@@ -1,7 +1,7 @@
 <?php
 namespace PHPConfig;
 
-require __DIR__ . '/File.php';
+//require __DIR__ . '/File.php';
 
 /**
  * @author fiunchinho

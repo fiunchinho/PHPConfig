@@ -1,0 +1,23 @@
+{
+    "name": "fiunchinho/PHPConfig",
+    "type": "library",
+    "description": "Config made easy",
+    "keywords": ["config"],
+    "homepage": "https://github.com/fiunchinho/PHPConfig",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jose Armesto",
+            "email": "jose@armesto.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "PHPConfig": ""
+        }
+    }
+}
