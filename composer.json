@@ -1,5 +1,5 @@
 {
-    "name": "fiunchinho/PHPConfig",
+    "name": "PHPConfig",
     "type": "library",
     "description": "Config made easy",
     "keywords": ["config"],
