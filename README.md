@@ -26,3 +26,5 @@ Config values inheritance
 ---------------------------
 You can get inheritance accross different environments. If you equalize to environments, the second one will inherit from the first one. Afterwards you may set new values for that environment, or even overwrite the existing ones. The inheritance accepts several levels.
 There is a example config file.
+
+Testing some stuff here.
